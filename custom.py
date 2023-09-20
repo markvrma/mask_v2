@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import imgaug
 
 # Root directory of the project
-ROOT_DIR = "/content/Mask-R-CNN-using-Tensorflow2/"
+ROOT_DIR = "/kaggle/working/Mask-R-CNN-using-Tensorflow2/"
 
 # Import Mask RCNN
 sys.path.append(ROOT_DIR)  # To find local version of the library
@@ -35,7 +35,7 @@ class CustomConfig(Config):
 
 
     # NUMBER OF GPUs to use. When using only a CPU, this needs to be set to 1.
-    GPU_COUNT = 1
+    GPU_COUNT = 2
 
 
     # We use a GPU with 12GB memory, which can fit two images.
@@ -92,7 +92,7 @@ class CustomDataset(utils.Dataset):
         # }
         # We mostly care about the x and y coordinates of each region
 
-        annotations1 = json.load(open(f"/content/Mask-R-CNN-using-Tensorflow2/data/{subset}/{subset}.json"))
+        annotations1 = json.load(open(f"/kaggle/working/Mask-R-CNN-using-Tensorflow2/data/{subset}/{subset}.json"))
 
         # print(annotations1)
         annotations = list(annotations1.values())  # don't need the dict keys
@@ -174,12 +174,12 @@ def train(model):
     """Train the model."""
     # Training dataset.
     dataset_train = CustomDataset()
-    dataset_train.load_custom("/content/Mask-R-CNN-using-Tensorflow2/data", "train")
+    dataset_train.load_custom("/kaggle/working/Mask-R-CNN-using-Tensorflow2/data", "train")
     dataset_train.prepare()
 
     # Validation dataset
     dataset_val = CustomDataset()
-    dataset_val.load_custom("/content/Mask-R-CNN-using-Tensorflow2/data", "val")
+    dataset_val.load_custom("/kaggle/working/Mask-R-CNN-using-Tensorflow2/data", "val")
     dataset_val.prepare()
 
     # *** This training schedule is an example. Update to your needs ***
